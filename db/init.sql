@@ -1,0 +1,9 @@
+CREATE DATABASE IF NOT EXISTS testDB;
+USE testDB;
+
+CREATE TABLE IF NOT EXISTS messages (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    content VARCHAR(255) NOT NULL
+);
+
+INSERT INTO messages (content) VALUES ('Hello, Kubernetes!');
