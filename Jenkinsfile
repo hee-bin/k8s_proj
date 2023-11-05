@@ -5,12 +5,13 @@ pipeline {
         // 환경 변수 설정
         DOCKERHUB_CREDENTIALS_ID = 'heebinDockerhub'
         DOCKERHUB_USERNAME = 'heebin00'
-        IMAGE_TAG = 'latest' // 또는 다른 태깅 전략을 사용할 수 있습니다.
+        IMAGE_TAG = 'v1' // 또는 다른 태깅 전략을 사용할 수 있습니다.
     }
 
     stages {
         stage('Checkout') {
             steps {
+                
                 // GitHub 저장소에서 소스 코드 체크아웃
                         git branch: 'main', url: 'https://github.com/hee-bin/k8s_proj.git'
 
