@@ -26,14 +26,14 @@ pipeline {
                         sh 'echo $DOCKERHUB_PASS | docker login -u $DOCKERHUB_USER --password-stdin'
                     }
                     // db 이미지 빌드 및 푸시
-                    sh 'docker build -t $DOCKERHUB_USER/db:$IMAGE_TAG ./db'
-                    sh 'docker push $DOCKERHUB_USER/db:$IMAGE_TAG'
+                    sh 'docker build -t $DOCKERHUB_USERNAME/db:$IMAGE_TAG ./db'
+                    sh 'docker push $DOCKERHUB_USERNAME/db:$IMAGE_TAG'
                     // was 이미지 빌드 및 푸시
-                    sh 'docker build -t $DOCKERHUB_USER/was:$IMAGE_TAG ./was'
-                    sh 'docker push $DOCKERHUB_USER/was:$IMAGE_TAG'
+                    sh 'docker build -t $DOCKERHUB_USERNAME/was:$IMAGE_TAG ./was'
+                    sh 'docker push $DOCKERHUB_USERNAME/was:$IMAGE_TAG'
                     // web 이미지 빌드 및 푸시
-                    sh 'docker build -t $DOCKERHUB_USER/web:$IMAGE_TAG ./web'
-                    sh 'docker push $DOCKERHUB_USER/web:$IMAGE_TAG'
+                    sh 'docker build -t $DOCKERHUB_USERNAME/web:$IMAGE_TAG ./web'
+                    sh 'docker push $DOCKERHUB_USERNAME/web:$IMAGE_TAG'
                 }
             }
         }
