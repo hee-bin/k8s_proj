@@ -12,7 +12,8 @@ pipeline {
         stage('Checkout') {
             steps {
                 // GitHub 저장소에서 소스 코드 체크아웃
-                git 'https://github.com/hee-bin/k8s_proj.git'
+                        git branch: 'main', url: 'https://github.com/hee-bin/k8s_proj.git'
+
             }
         }
 
