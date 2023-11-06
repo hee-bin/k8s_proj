@@ -25,13 +25,18 @@ spec:
         app: was
     spec:
       containers:
-      - name: was
-        image: heebin00/was:v1
-        ports:
-        - containerPort: 3000
-        env:
-        - name: MYSQL_ROOT_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: mysql-secret
-              key: MYSQL_ROOT_PASSWORD
+        - name: was
+          image: heebin00/was:v1
+          ports:
+            - containerPort: 3000
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-credential
+                  key: password
+            - name: MYSQL_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-credential
+                  key: username
