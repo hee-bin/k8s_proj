@@ -7,4 +7,3 @@ CREATE TABLE IF NOT EXISTS messages (
 );
 
 INSERT INTO messages (content) VALUES ('Hello, Kubernetes!');
-W
