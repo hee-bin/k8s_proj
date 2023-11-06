@@ -38,15 +38,13 @@ pipeline {
         }
         
 
-        stage('Deploy to Kubernetes') {
-            steps {
-                script {
-                    // Jenkins 크레덴셜을 사용하여 kubeconfig 파일을 임시 경로에 복사
-                    withCredentials([file(credentialsId: "${env.KUBECONFIG_CREDENTIALS_ID}", variable: 'KUBECONFIG')]) {
+            stage('Deploy to Kubernetes') {
+                steps {
+                    script {
                         // Kubernetes 클러스터에 Deployment 적용
-                        sh 'kubectl apply -f k8s/web-deployment.yml'
-                        sh 'kubectl apply -f k8s/db-deployment.yml'
-                        sh 'kubectl apply -f k8s/was-deployment.yml'
+                        sh 'kubectl apply -f /home/workspace/k8s/web-deployment.yml'
+                        sh 'kubectl apply -f /home/workspace/k8s/db-deployment.yml'
+                        sh 'kubectl apply -f /home/workspace/k8s/was-deployment.yml'
                     }
                 }
             }
