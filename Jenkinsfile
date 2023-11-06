@@ -6,15 +6,14 @@ pipeline {
         DOCKERHUB_CREDENTIALS_ID = 'heebinDockerhub'
         DOCKERHUB_USERNAME = 'heebin00'
         IMAGE_TAG = 'v1' // 또는 다른 태깅 전략을 사용할 수 있습니다.
+        KUBECONFIG_CREDENTIALS_ID = 'kube-Config' // Jenkins에 저장된 kubeconfig 크레덴셜 ID
     }
 
     stages {
         stage('Checkout') {
             steps {
-                
                 // GitHub 저장소에서 소스 코드 체크아웃
-                        git branch: 'main', url: 'https://github.com/hee-bin/k8s_proj.git'
-
+                git branch: 'main', url: 'https://github.com/hee-bin/k8s_proj.git'
             }
         }
 
@@ -34,6 +33,20 @@ pipeline {
                     // web 이미지 빌드 및 푸시
                     sh 'docker build -t $DOCKERHUB_USERNAME/web:$IMAGE_TAG ./web'
                     sh 'docker push $DOCKERHUB_USERNAME/web:$IMAGE_TAG'
+                }
+            }
+        }
+
+        stage('Deploy to Kubernetes') {
+            steps {
+                script {
+                    // Jenkins 크레덴셜을 사용하여 kubeconfig 파일을 임시 경로에 복사
+                    withCredentials([file(credentialsId: "${env.KUBECONFIG_CREDENTIALS_ID}", variable: 'KUBECONFIG')]) {
+                        // Kubernetes 클러스터에 Deployment 적용
+                        sh 'kubectl apply -f k8s/db-deployment.yml'
+                        sh 'kubectl apply -f k8s/was-deployment.yml'
+                        sh 'kubectl apply -f k8s/web-deployment.yml'
+                    }
                 }
             }
         }
