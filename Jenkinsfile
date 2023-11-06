@@ -6,7 +6,7 @@ pipeline {
         DOCKERHUB_CREDENTIALS_ID = 'heebinDockerhub'
         DOCKERHUB_USERNAME = 'heebin00'
         IMAGE_TAG = 'v1' // 또는 다른 태깅 전략을 사용할 수 있습니다.
-        KUBECONFIG_CREDENTIALS_ID = 'kube-Config' // Jenkins에 저장된 kubeconfig 크레덴셜 ID
+        KUBECONFIG_CREDENTIALS_ID = 'kubeconfig-credentials' // Jenkins에 저장된 kubeconfig 크레덴셜 ID
     }
 
     stages {
@@ -36,15 +36,16 @@ pipeline {
                 }
             }
         }
-        
 
-            stage('Deploy to Kubernetes') {
-                steps {
-                    script {
+        stage('Deploy to Kubernetes') {
+            steps {
+                script {
+                    // Jenkins 크레덴셜을 사용하여 kubeconfig 파일을 임시 경로에 복사
+                    withCredentials([file(credentialsId: "${env.KUBECONFIG_CREDENTIALS_ID}", variable: 'KUBECONFIG')]) {
                         // Kubernetes 클러스터에 Deployment 적용
-                        sh 'kubectl apply -f /home/workspace/k8s/web-deployment.yml'
-                        sh 'kubectl apply -f /home/workspace/k8s/db-deployment.yml'
-                        sh 'kubectl apply -f /home/workspace/k8s/was-deployment.yml'
+                        sh 'kubectl apply -f k8s/db-deployment.yml'
+                        sh 'kubectl apply -f k8s/was-deployment.yml'
+                        sh 'kubectl apply -f k8s/web-deployment.yml'
                     }
                 }
             }
