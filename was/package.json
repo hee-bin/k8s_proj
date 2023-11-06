@@ -10,6 +10,5 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.18.2",
-    "mysql": "^2.18.1" // 모듈 이름을 "mysql"로 수정
-  }
+    "mysql": "^2.18.1" 
 }
