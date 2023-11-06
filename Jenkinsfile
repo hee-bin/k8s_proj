@@ -43,7 +43,7 @@ pipeline {
                     // Jenkins 서버에 저장된 kubeconfig 파일의 경로를 설정
                     def kubeconfigPath = '/var/lib/jenkins/.kube/config'
 
-                    // KUBECONFIG 환경 변수 설정
+                    // KUBECONFIG 환경 변수 설정 (등호 양 옆에 공백이 없도록 주의)
                     withEnv(["KUBECONFIG=$kubeconfigPath"]) {
                         // Kubernetes 클러스터에 Deployment 적용
                         sh 'kubectl apply -f k8s/db-deployment.yml'
