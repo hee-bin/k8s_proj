@@ -26,7 +26,7 @@ spec:
     spec:
       containers:
         - name: was
-          image: heebin00/was:v4.5
+          image: heebin00/was:v4.6
           ports:
             - containerPort: 3000
           env:

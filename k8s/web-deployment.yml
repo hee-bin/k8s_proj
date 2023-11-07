@@ -28,7 +28,7 @@ spec:
     spec:
       containers:
         - name: web
-          image: heebin00/web:v4.5
+          image: heebin00/web:v4.6
           ports:
           - containerPort: 80
       nodeSelector:

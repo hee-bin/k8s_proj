@@ -1,15 +1,13 @@
 const express = require('express');
-const cors = require('cors'); // CORS 미들웨어 추가
+const cors = require('cors');
 const mysql = require('mysql');
 const app = express();
 const port = 3000;
 
-// CORS 미들웨어 활성화
 app.use(cors());
 
-// 환경변수를 통해 비밀번호를 받습니다.
 const db = mysql.createConnection({
-  host: '10.98.165.174', // MySQL 서비스의 DNS 이름을 사용
+  host: '10.98.165.174', // MySQL 서비스의 내부 IP 또는 DNS 이름
   user: 'root',
   password: process.env.MYSQL_ROOT_PASSWORD,
   database: 'testDB'
@@ -23,11 +21,10 @@ db.connect((err) => {
 app.get('/', (req, res) => {
   db.query('SELECT * FROM messages', (err, results) => {
     if (err) throw err;
-    console.log('Messages from the database:', results); // 메시지를 콘솔에 출력
     res.send(results);
   });
 });
 
 app.listen(port, () => {
-  console.log(`App running on http://10.96.95.146:${port}`);
+  console.log(`WAS listening on port ${port}`);
 });
