@@ -9,8 +9,7 @@ function App() {
     fetch('http://10.96.95.146/')
       .then(response => {
         if (!response.ok) {
-          const errorMessage = `Failed to fetch data: ${response.status} - ${response.statusText}`;
-          throw new Error(errorMessage); // 에러 발생
+          throw new Error('Failed to fetch data'); // 에러 발생
         }
         return response.json();
       })
@@ -23,7 +22,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Messages4.4</h1>
+        <h1>Messages4.3</h1>
         {error ? (
           <p>Error: {error}</p> // 에러가 발생한 경우 에러 메시지 표시
         ) : (
