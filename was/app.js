@@ -8,8 +8,8 @@ app.use(cors());
 
 const db = mysql.createConnection({
   host: 'mysql-service',
-  user: 'root',
-  password: process.env.MYSQL_ROOT_PASSWORD,
+  user: process.env.MYSQL_USERNAME, // 환경 변수에서 사용자 이름을 가져옵니다.
+  password: process.env.MYSQL_PASSWORD, // 환경 변수에서 비밀번호를 가져옵니다.
   database: 'testDB'
 });
 
