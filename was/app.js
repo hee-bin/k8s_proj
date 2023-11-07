@@ -20,7 +20,7 @@ db.connect((err) => {
   console.log("MySQL Connected!");
 });
 
-app.get('/messages', (req, res) => {
+app.get('/', (req, res) => {
   db.query('SELECT * FROM messages', (err, results) => {
     if (err) throw err;
     res.send(results);
