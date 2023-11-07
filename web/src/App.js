@@ -6,7 +6,7 @@ function App() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch('http://10.96.95.146:3000/', { // <WEB_SERVER_IP_OR_DOMAIN>을 웹 서버의 IP나 도메인으로 교체
+    fetch('http://was-service:3000/', { // <WEB_SERVER_IP_OR_DOMAIN>을 웹 서버의 IP나 도메인으로 교체
       method: 'GET',
       mode: 'cors',
       headers: {
