@@ -50,7 +50,7 @@ pipeline {
                         sh 'kubectl apply -f k8s/was-deployment.yml'
                         sh 'kubectl apply -f k8s/web-deployment.yml'
 
-                        sh 'kubectl apply -f k8s/ingress.yml'
+                        sh 'kubectl apply -f k8s/web-was-ingress.yml'
                     }
                 }
             }
