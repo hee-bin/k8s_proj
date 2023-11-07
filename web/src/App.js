@@ -28,7 +28,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Messages 4.7</h1>
+        <h1>Messages 4.8</h1>
         {error ? (
           <p>Error: {error}</p>
         ) : (
