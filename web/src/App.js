@@ -17,7 +17,7 @@ function App() {
       .catch(error => {
         console.error('Fetch error:', error);
       });
-  }, []); // 빈 의존성 배열은 컴포넌트가 마운트될 때 한 번만 실행되도록 합니다.
+  }, []);
 
   return (
     <div>
@@ -27,3 +27,8 @@ function App() {
           <li key={index}>{message.content}</li> // 'content'는 데이터베이스의 필드에 따라 달라질 수 있습니다.
         )) : <li>Loading messages...</li>}
       </ul>
+    </div> // 여기에 닫는 div 태그를 추가했습니다.
+  );
+}
+
+export default App;
