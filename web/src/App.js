@@ -6,10 +6,18 @@ function App() {
   const [error, setError] = useState(null); // 에러 상태 추가
 
   useEffect(() => {
-    fetch('http://10.96.95.146:3000/')
+    // CORS 설정을 포함한 fetch 요청
+    fetch('http://10.96.95.146:3000/', {
+      method: 'GET',
+      mode: 'cors', // CORS 요청 설정
+      headers: {
+        'Content-Type': 'application/json',
+        // 필요한 다른 헤더 추가
+      },
+    })
       .then(response => {
         if (!response.ok) {
-          throw new Error('Failed to fetch data'); // 에러 발생
+          throw new Error(`Failed to fetch data: ${response.status} - ${response.statusText}`);
         }
         return response.json();
       })
