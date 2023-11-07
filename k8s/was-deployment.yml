@@ -26,8 +26,8 @@ spec:
     spec:
       containers:
         - name: was
-          image: heebin00/was:v3.1
-          ports:
+          image: heebin00/was:v4
+          ports
             - containerPort: 3000
           env:
             - name: MYSQL_ROOT_PASSWORD
