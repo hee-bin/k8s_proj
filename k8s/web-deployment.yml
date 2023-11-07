@@ -29,3 +29,5 @@ spec:
           image: heebin00/web:v1
           ports:
           - containerPort: 80
+      nodeSelector:
+        app: web  # web 역할을 가진 노드에 배치하도록 설정

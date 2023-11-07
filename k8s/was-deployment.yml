@@ -40,3 +40,5 @@ spec:
                 secretKeyRef:
                   name: mysql-credential
                   key: username
+      nodeSelector:
+        app: was  # was 역할을 가진 노드에 배치하도록 설정

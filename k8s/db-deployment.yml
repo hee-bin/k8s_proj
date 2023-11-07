@@ -40,3 +40,5 @@ spec:
               key: username
         ports:
         - containerPort: 3306
+      nodeSelector:
+        app: db  # db 역할을 가진 노드에 배치하도록 설정
