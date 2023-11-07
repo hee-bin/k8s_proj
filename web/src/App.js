@@ -9,7 +9,8 @@ function App() {
     fetch('10.96.95.146/')
       .then(response => {
         if (!response.ok) {
-          throw new Error('Failed to fetch data'); // 에러 발생
+          const errorMessage = `Failed to fetch data: ${response.status} - ${response.statusText}`;
+          throw new Error(errorMessage); // 에러 발생
         }
         return response.json();
       })
