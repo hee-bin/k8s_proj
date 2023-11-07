@@ -22,7 +22,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Messages</h1>
+        <h1>Messages2</h1>
         {error ? ( // 에러가 발생한 경우 에러 메시지를 표시
           <p>Error: {error}</p>
         ) : (
