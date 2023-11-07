@@ -6,7 +6,7 @@ function App() {
   const [error, setError] = useState(null); // 에러 상태 추가
 
   useEffect(() => {
-    fetch('http://10.96.95.146/')
+    fetch('http://10.96.95.146:3000/')
       .then(response => {
         if (!response.ok) {
           throw new Error('Failed to fetch data'); // 에러 발생
