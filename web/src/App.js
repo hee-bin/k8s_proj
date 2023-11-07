@@ -1,47 +1,31 @@
-import React, { useEffect, useState } from 'react';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 function App() {
   const [messages, setMessages] = useState([]);
-  const [error, setError] = useState(null);
 
   useEffect(() => {
-    // Ingress의 호스트 이름을 사용하여 요청을 보냅니다.
-    // 예를 들어, Ingress가 `www.example.com`에 설정되어 있다면:
-    const apiUrl = 'http://125.6.36.221//api';
-
-    fetch(apiUrl, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(`Failed to fetch data: ${response.status} - ${response.statusText}`);
+    // API 요청을 보내고 응답을 상태에 저장합니다.
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('http://10.98.165.174:3000/getData');
+        setMessages(response.data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
       }
-      return response.json();
-    })
-    .then(data => setMessages(data))
-    .catch(err => {
-      setError(err.message);
-    });
-  }, []);
+    };
+
+    fetchData();
+  }, []); // 빈 배열을 전달하여 컴포넌트 마운트 시 한 번만 실행되도록 합니다.
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Messages</h1>
-        {error ? (
-          <p>Error: {error}</p>
-        ) : (
-          <ul>
-            {messages.map(message => (
-              <li key={message.id}>{message.content}</li>
-            ))}
-          </ul>
-        )}
-      </header>
+    <div>
+      <h1>Messages</h1>
+      <ul>
+        {messages.map((message, index) => (
+          <li key={index}>{message.content}</li> // 'content'는 데이터베이스의 필드에 따라 달라질 수 있습니다.
+        ))}
+      </ul>
     </div>
   );
 }

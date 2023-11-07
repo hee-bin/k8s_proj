@@ -32,7 +32,7 @@ db.connect((err) => {
 });
 
 // 클라이언트 요청에 대한 응답으로 데이터베이스에서 메시지를 가져옵니다.
-app.get('/api', (req, res) => { // '/api' 경로를 추가합니다.
+app.get('/getData', (req, res) => { // '/api' 경로를 추가합니다.
   db.query('SELECT * FROM messages', (err, results) => {
     if (err) {
       console.error('Error querying the database:', err);
