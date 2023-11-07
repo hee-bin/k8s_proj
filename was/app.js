@@ -23,6 +23,7 @@ db.connect((err) => {
 app.get('/', (req, res) => {
   db.query('SELECT * FROM messages', (err, results) => {
     if (err) throw err;
+    console.log('Messages from the database:', results); // 메시지를 콘솔에 출력
     res.send(results);
   });
 });
