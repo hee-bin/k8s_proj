@@ -5,7 +5,7 @@ pipeline {
         // 환경 변수 설정
         DOCKERHUB_CREDENTIALS_ID = 'heebinDockerhub'
         DOCKERHUB_USERNAME = 'heebin00'
-        IMAGE_TAG = 'v4.6' // 또는 다른 태깅 전략을 사용할 수 있습니다.
+        IMAGE_TAG = 'v4.7' // 또는 다른 태깅 전략을 사용할 수 있습니다.
         KUBECONFIG_CREDENTIALS_ID = 'kube-Config' // Jenkins에 저장된 kubeconfig 크레덴셜 ID
     }
 
