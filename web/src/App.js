@@ -6,9 +6,12 @@ function App() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch('http://was-service:3000/', { // <WEB_SERVER_IP_OR_DOMAIN>을 웹 서버의 IP나 도메인으로 교체
+    // Ingress의 호스트 이름을 사용하여 요청을 보냅니다.
+    // 예를 들어, Ingress가 `www.example.com`에 설정되어 있다면:
+    const apiUrl = 'http://125.6.36.221//api';
+
+    fetch(apiUrl, {
       method: 'GET',
-      mode: 'cors',
       headers: {
         'Content-Type': 'application/json',
       },
@@ -28,7 +31,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Messages 4.8</h1>
+        <h1>Messages</h1>
         {error ? (
           <p>Error: {error}</p>
         ) : (
