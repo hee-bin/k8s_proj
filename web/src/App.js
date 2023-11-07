@@ -1,33 +1,29 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 
 function App() {
-  const [messages, setMessages] = useState([]);
+  const [data, setData] = useState(null);
 
   useEffect(() => {
-    // API 요청을 보내고 응답을 상태에 저장합니다.
-    const fetchData = async () => {
-      try {
-        const response = await axios.get('http://10.98.165.174:3000/getData');
-        setMessages(response.data);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-
-    fetchData();
-  }, []); // 빈 배열을 전달하여 컴포넌트 마운트 시 한 번만 실행되도록 합니다.
+    fetch('http://10.96.95.146:3000/api')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        setData(data);
+      })
+      .catch(error => {
+        console.error('Fetch error:', error);
+      });
+  }, []); // 빈 의존성 배열은 컴포넌트가 마운트될 때 한 번만 실행되도록 합니다.
 
   return (
     <div>
-      <h1>Messages</h1>
+      <h1>Messages 4.9.2</h1>
       <ul>
-        {messages.map((message, index) => (
+        {data ? data.map((message, index) => (
           <li key={index}>{message.content}</li> // 'content'는 데이터베이스의 필드에 따라 달라질 수 있습니다.
-        ))}
+        )) : <li>Loading messages...</li>}
       </ul>
-    </div>
-  );
-}
-
-export default App;
