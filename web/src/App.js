@@ -23,8 +23,8 @@ function App() {
     <div className="App">
       <header className="App-header">
         <h1>Messages4.3</h1>
-        {error ? ( // 에러가 발생한 경우 에러 메시지를 표시
-          <p>Error: {error}</p>
+        {error ? (
+          <p>Error: {error}</p> // 에러가 발생한 경우 에러 메시지 표시
         ) : (
           <ul>
             {messages.map(message => (
