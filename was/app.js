@@ -1,7 +1,11 @@
 const express = require('express');
+const cors = require('cors'); // CORS 미들웨어 추가
 const mysql = require('mysql');
 const app = express();
 const port = 3000;
+
+// CORS 미들웨어 활성화
+app.use(cors());
 
 // 환경변수를 통해 비밀번호를 받습니다.
 const db = mysql.createConnection({
