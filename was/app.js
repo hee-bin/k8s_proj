@@ -5,7 +5,7 @@ const port = 3000;
 
 // 환경변수를 통해 비밀번호를 받습니다.
 const db = mysql.createConnection({
-  host: 'mysql-service', // 서비스 이름으로 수정
+  host: 'mysql-service', // MySQL 서비스의 DNS 이름을 사용
   user: 'root',
   password: process.env.MYSQL_ROOT_PASSWORD,
   database: 'testDB'
