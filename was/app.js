@@ -7,9 +7,9 @@ const port = 3000;
 app.use(cors());
 
 const db = mysql.createConnection({
-  host: 'mysql-service',
-  user: process.env.MYSQL_USERNAME, // 환경 변수에서 사용자 이름을 가져옵니다.
-  password: process.env.MYSQL_PASSWORD, // 환경 변수에서 비밀번호를 가져옵니다.
+  host: '10.98.165.174',
+  user: process.env.MYSQL_USERNAME,
+  password: process.env.MYSQL_PASSWORD,
   database: 'testDB'
 });
 
@@ -19,7 +19,7 @@ db.connect((err) => {
     console.error('Error connecting to MySQL:', err);
     return;
   }
-  console.log("MySQL Connected!");
+  console.log('MySQL Connected!');
 
   // 서버 시작 시 데이터베이스에서 메시지를 가져와서 확인합니다.
   db.query('SELECT * FROM messages', (err, results) => {
@@ -32,13 +32,14 @@ db.connect((err) => {
 });
 
 // 클라이언트 요청에 대한 응답으로 데이터베이스에서 메시지를 가져옵니다.
-app.get('/api', (req, res) => { // '/api' 경로를 추가합니다.
+app.get('/api', (req, res) => {
   db.query('SELECT * FROM messages', (err, results) => {
     if (err) {
       console.error('Error querying the database:', err);
       res.status(500).send('Error querying the database');
       return;
     }
+    console.log('Messages retrieved from the database:', results); // 메시지 가져온 내용을 로그에 출력
     res.send(results);
   });
 });
