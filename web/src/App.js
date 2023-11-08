@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
+import './App.css';
 function App() {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null); // 에러 상태 추가
@@ -24,7 +24,7 @@ function App() {
 
   return (
     <div>
-      <h1>Messages 4.9.2</h1>
+      <h1>Messages 4.9.3</h1>
       {error ? ( // 에러 상태에 따라 에러 메시지 또는 데이터를 표시
         <div>Error: {error}</div>
       ) : (
