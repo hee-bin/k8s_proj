@@ -26,7 +26,7 @@ spec:
     spec:
       containers:
       - name: mysql
-        image: heebin00/db:v4.9.4
+        image: heebin00/db:v4.9.5
         env:
         - name: MYSQL_ROOT_PASSWORD
           valueFrom:
